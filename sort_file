@@ -1,0 +1,18 @@
+import os
+from shutil import move
+
+def sort_file(directory_path):
+    for filename in os.listdir(directory_path):
+        if os.path.isfile(os.path.join(directory_path,filename)):
+            # 获取文件扩展名
+            file_extension=filename.split('.')[-1]
+            #创建目标目录
+            #os.path.join 用于拼接文件路径
+            destination_dirc=os.path.join(directory_path,file_extension)
+            if not os.path.exists(destination_dirc):
+                os.makedirs(destination_dirc)
+            #移动文件
+            move(os.path.join(directory_path,filename),
+                 os.path.join(destination_dirc,filename))
+
+sort_file("E:\新建文件夹")
